@@ -32,15 +32,19 @@ public class PlayerController : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (grounded)
         {
             myRB.velocity =  new Vector2(horizontal * currentMovementSpeed, myRB.velocity.y);
 
         }
+        else
+        {
+            myRB.AddForce(new Vector3(horizontal * currentMovementSpeed, 0, 0));
 
-        if(!isFacingRight && horizontal > 0f)
+        }
+        if (!isFacingRight && horizontal > 0f)
         {
             Flip();
         }
