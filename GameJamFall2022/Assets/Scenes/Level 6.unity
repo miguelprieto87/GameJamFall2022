@@ -4034,6 +4034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Medium Platform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8384255118532776607, guid: 612539f16f3638645b9df325fe0f35ed, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb328c1c4c0f6a349ad75f064c2204b9, type: 2}
     - target: {fileID: 8972052017070975565, guid: 612539f16f3638645b9df325fe0f35ed, type: 3}
       propertyPath: m_RootOrder
       value: 3
