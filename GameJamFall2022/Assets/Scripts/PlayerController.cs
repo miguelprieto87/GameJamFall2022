@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
@@ -21,12 +20,14 @@ public class PlayerController : MonoBehaviour
     public bool isFacingRight = true;
     private bool grounded;
     private float jumpDelay;
+    private bool isDead = false;
 
     [Header("Components")]
     [SerializeField] private Rigidbody myRB;
 
     void Start()
     {
+        isDead = false;
         currentMovementSpeed = movementSpeed;
         currentJumpHeight = jumpHeight;
         myRB = GetComponent<Rigidbody>();
@@ -56,13 +57,14 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(InputAction.CallbackContext context)
     { 
+        if (isDead) return;
         horizontal = context.ReadValue<Vector2>().x;
 
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!grounded || jumpDelay > Time.time) return;
+        if (!grounded || jumpDelay > Time.time || isDead) return;
         slider.IncreaseSlider();
         myRB.AddForce(transform.up * currentJumpHeight, ForceMode.Impulse);
         jumpDelay = Time.time + .5f;
@@ -75,6 +77,11 @@ public class PlayerController : MonoBehaviour
         {
             grounded = true;
             jumpDelay = Time.time + .05f;
+        }
+
+        if (collision.CompareTag("Shredder"))
+        {
+            Die();
         }
     }
 
@@ -99,5 +106,13 @@ public class PlayerController : MonoBehaviour
     {
         currentJumpHeight = jumpHeight * modifier;
         currentMovementSpeed = movementSpeed + modifier;
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        FindObjectOfType<MenuController>().index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene("DeathScene");
+
     }
 }

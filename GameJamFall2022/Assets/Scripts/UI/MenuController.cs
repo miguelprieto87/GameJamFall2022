@@ -5,23 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    void StartGame()
+    public int index;
+
+    private void Awake()
     {
-        SceneManager.LoadScene("Level 1");
+        DontDestroyOnLoad(this);
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene("level");
     }
 
-    void QuitGame()
+    public void QuitGame()
     {
+        print("quitting");
         Application.Quit();
     }
 
-    void RetryLevel(int buildIndex)
+    public void RetryLevel()
     {
-        SceneManager.LoadScene(buildIndex);
+        SceneManager.LoadScene(index);
     }
 
-    void MainMenu()
+    public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
     }
 }
