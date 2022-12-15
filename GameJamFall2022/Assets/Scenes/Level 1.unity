@@ -2012,6 +2012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Long Platform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1790589243552457225, guid: 3b1e6d1016f373947a5aa24558e5241d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb328c1c4c0f6a349ad75f064c2204b9, type: 2}
     - target: {fileID: 3476056110714341155, guid: 3b1e6d1016f373947a5aa24558e5241d, type: 3}
       propertyPath: m_RootOrder
       value: 0
