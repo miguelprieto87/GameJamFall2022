@@ -83,6 +83,11 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+
+        if (collision.CompareTag("End"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     private void OnTriggerExit(Collider collision)

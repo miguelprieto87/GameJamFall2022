@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Shredder
+  - End
   layers:
   - Default
   - TransparentFX
