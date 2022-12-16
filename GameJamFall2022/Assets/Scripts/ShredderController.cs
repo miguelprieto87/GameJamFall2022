@@ -17,7 +17,7 @@ public class ShredderController : MonoBehaviour
     {
         
         transform.position = new Vector3(transform.position.x, transform.position.y + risingRate, transform.position.z);
-        yield return null;
+        yield return new WaitForSeconds(0.05f);
         StartCoroutine(RaiseShredder());
     }
 }
