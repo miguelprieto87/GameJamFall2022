@@ -472,10 +472,10 @@ Transform:
   - {fileID: 582414602}
   - {fileID: 978213167}
   - {fileID: 1064104223}
-  - {fileID: 2033405611}
   - {fileID: 622702546}
-  - {fileID: 400055188}
   - {fileID: 1441626615}
+  - {fileID: 400055188}
+  - {fileID: 2033405611}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -902,7 +902,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441626611}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -970,7 +970,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 780798720}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2033405611 stripped
 Transform:
