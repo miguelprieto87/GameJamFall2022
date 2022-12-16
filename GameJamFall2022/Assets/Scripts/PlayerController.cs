@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
+[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider), typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip jumpAudio;
+    private AudioSource audioSource;
+    private bool isWalking = false;
 
     [Header("Slider")]
     [SerializeField] private SliderController slider;
@@ -31,19 +35,30 @@ public class PlayerController : MonoBehaviour
         currentMovementSpeed = movementSpeed;
         currentJumpHeight = jumpHeight;
         myRB = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
     {
         if (grounded)
         {
-            myRB.velocity =  new Vector2(horizontal * currentMovementSpeed, myRB.velocity.y);
-
+            myRB.velocity = new Vector2(horizontal * currentMovementSpeed, myRB.velocity.y);
+            if (horizontal != 0 && !isWalking)
+            {
+                isWalking = true;
+                StartCoroutine(PlayWalkSound());
+            }
+            else if (horizontal == 0)
+            {
+                isWalking = false;
+                StopAllCoroutines();
+            }
         }
         else
         {
             myRB.AddForce(new Vector3(horizontal * currentMovementSpeed, 0, 0));
-
+            isWalking = false;
+            StopAllCoroutines();
         }
         if (!isFacingRight && horizontal > 0f)
         {
@@ -55,10 +70,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator PlayWalkSound()
+    {
+        while (true)
+        {
+            audioSource.Play();
+            yield return new WaitForSeconds(0.6f);
+        }
+    }
+
     public void MovePlayer(InputAction.CallbackContext context)
     { 
         if (isDead) return;
         horizontal = context.ReadValue<Vector2>().x;
+        
 
     }
 
@@ -68,6 +93,7 @@ public class PlayerController : MonoBehaviour
         slider.IncreaseSlider();
         myRB.AddForce(transform.up * currentJumpHeight, ForceMode.Impulse);
         jumpDelay = Time.time + .5f;
+        audioSource.PlayOneShot(jumpAudio);
         print("jumping");
     }
 
