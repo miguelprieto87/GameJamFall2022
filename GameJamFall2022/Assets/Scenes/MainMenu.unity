@@ -2344,9 +2344,9 @@ MonoBehaviour:
     keyboard:
     spacebar
 
-    controller: x button (xbox)
+    controller: x button (Playstation)
 
-    a button (Playstation)'
+    a button (Xbox)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d4b26ef467be8540a3ea9ac5622cdc4, type: 2}
   m_sharedMaterial: {fileID: 4182594470147231652, guid: 9d4b26ef467be8540a3ea9ac5622cdc4, type: 2}
